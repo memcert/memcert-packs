@@ -37,7 +37,7 @@ If something is found after listing, the pack is named in a signed, dated list o
 
 ## Asking for a pack to be taken down
 
-Open an issue naming the pack and the reason. Rights holders can write to the address on the site.
+Open an issue naming the pack and the reason, or write to hello@memcert.dev. Rights holders can write to the same address.
 
 ## Refusals are public
 
