@@ -1,0 +1,8 @@
+# A pack is a signed archive: git must never change a byte of it.
+*.ampack binary
+
+# Text here is kept with LF line endings on every machine, so a file's bytes are the same wherever it is checked out.
+*.md   text eol=lf
+*.json text eol=lf
+*.pem  text eol=lf
+*.yml  text eol=lf
