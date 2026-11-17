@@ -1,0 +1,75 @@
+# Checks a proposed pack. NOT RUN YET: written on 17 November 2026 and never executed. Prove it on a first pull request.
+#
+# It runs on pull requests WITHOUT any secret and with a read-only token. A pull request can change this very file, so a
+# green result here is advice for the reviewer, not the decision: the curator runs the same checks on their own machine
+# before signing.
+name: check proposed packs
+
+on:
+  pull_request:
+    paths:
+      - "packs/**"
+      - "publishers/**"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Pin each action to a full commit id before use (the tag is shown for reading).
+      - name: The proposal
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: The tool, from a fixed commit of the public repository
+        uses: actions/checkout@v4
+        with:
+          repository: joslat/agent-memory-dotnet
+          ref: e3af52ecb0d01647474aa562f823787427b895a0   # agent-memory-dotnet main on 17 November 2026 (2.3.1)
+          path: tool-src
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build the tool
+        run: dotnet build tool-src/tools/Ampack -c Release -nologo
+
+      - name: Only packs and public keys may change in a proposal
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          changed=$(git diff --name-only "$BASE"...HEAD)
+          echo "$changed"
+          if echo "$changed" | grep -vE '^(packs/[a-z0-9-]+/[A-Za-z0-9._-]+\.ampack|publishers/[a-z0-9-]+\.pub\.pem)$'; then
+            echo "::error::A proposal may add only a pack file and a publisher's public key."; exit 1
+          fi
+
+      - name: Check each proposed pack
+        env:
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          tool="dotnet tool-src/tools/Ampack/bin/Release/net10.0/Ampack.dll"
+          author=$(printf '%s' "$AUTHOR" | tr '[:upper:]' '[:lower:]')
+          key="publishers/$author.pub.pem"
+          [ -f "$key" ] || { echo "::error::No public key for $author at $key."; exit 1; }
+          $tool trust add --public "$key" --policy policy.json --prefix "io.github.$author"
+          status=0
+          for f in $(git diff --name-only --diff-filter=A "$BASE"...HEAD -- 'packs/*.ampack' 'packs/**/*.ampack'); do
+            echo "=== $f"
+            case "$f" in packs/"$author"/*) ;; *) echo "::error::$f is not under packs/$author/."; status=1; continue;; esac
+            [ "$(stat -c %s "$f")" -le 20000000 ] || { echo "::error::$f is larger than 20 MB."; status=1; continue; }
+            $tool verify "$f" --policy policy.json --explain || status=1
+            $tool lint   "$f" --policy policy.json --safety  || status=1
+            $tool scan   "$f" --policy policy.json           || status=1
+            $tool test   "$f" --policy policy.json           || status=1
+          done
+          exit $status
