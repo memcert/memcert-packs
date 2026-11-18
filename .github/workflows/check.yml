@@ -1,4 +1,5 @@
-# Checks a proposed pack. NOT RUN YET: written on 17 November 2026 and never executed. Prove it on a first pull request.
+# Checks a proposed pack. First run on pull request #1, 18 November 2026: it passed a copy of a certified pack and
+# refused a copy with one word changed in a record.
 #
 # It runs on pull requests WITHOUT any secret and with a read-only token. A pull request can change this very file, so a
 # green result here is advice for the reviewer, not the decision: the curator runs the same checks on their own machine

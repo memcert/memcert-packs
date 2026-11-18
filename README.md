@@ -6,7 +6,7 @@ A memory pack is one signed file of knowledge, or of behaviour, that an AI agent
 
 **The shelf: [memcert.dev](https://memcert.dev).** Every pack here, with what each check found, its card, its first records, and a download.
 
-**Status: preview.** The first packs are our own. Proposals from others open once the checking workflow has run on a real pull request.
+**Status: preview.** The first packs are our own. Proposals from others are open: see `CONTRIBUTING.md`. The checking workflow ran on its first pull request ([#1](https://github.com/memcert/memcert-packs/pull/1), 18 November 2026): it passed a copy of a certified pack and refused a copy with one word changed.
 
 ## The packs
 
