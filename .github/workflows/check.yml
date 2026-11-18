@@ -19,24 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      # Pin each action to a full commit id before use (the tag is shown for reading).
+      # Each action is pinned to a full commit id; the comment names its version. Change both together.
       - name: The proposal
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: The tool, from a fixed commit of the public repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: joslat/agent-memory-dotnet
           ref: e3af52ecb0d01647474aa562f823787427b895a0   # agent-memory-dotnet main on 17 November 2026 (2.3.1)
           path: tool-src
           persist-credentials: false
 
-      - uses: actions/setup-dotnet@v4
+      - name: The .NET SDK the tool names
+        uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
         with:
-          dotnet-version: "10.0.x"
+          global-json-file: tool-src/global.json
 
       - name: Build the tool
         run: dotnet build tool-src/tools/Ampack -c Release -nologo
