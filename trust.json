@@ -1,0 +1,39 @@
+{
+  "format": "agentmemory.pack.trust/1.1",
+  "keys": [
+    {
+      "keyId": "50addd6eec7dde7ee275049ebe1ee0428d564370c624699019bf1f67f01f94e2",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhTxPGvYpJtK33bvhR3lZGaSqJhjG\nmwAAVO7ReR5LSpltqYa3QyMSMlPk3f01TLQGINs+FUBN9fxXAa0+F/5ZAw==\n-----END PUBLIC KEY-----",
+      "idPrefixes": [
+        "io.github.joslat"
+      ],
+      "roles": [
+        "publisher"
+      ]
+    },
+    {
+      "keyId": "b1a1aed60123648fa2bb767fb45a354dba64d8ad222ed4dad4639891d82ce63d",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExAD5WLdJy7ZhfDjpdR2CbVb92zYU\nf2IyMKIzJ0HKvxvn/FZodOUjeLMqq2o0RBKr19SyGCC/kSEQIWAo41lfmg==\n-----END PUBLIC KEY-----",
+      "idPrefixes": [
+        "io.github"
+      ],
+      "roles": [
+        "curator"
+      ]
+    },
+    {
+      "keyId": "60842f65bb4f3deac45408616f48ac2c6665f0bf4a82b591e187a6f92561af52",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE2JahFPQLBjedlnmlkZAAkhnpPDAP\ny8dIm0e+hJcftRQ/Y7PLZGLNp1rII/RUn5Oy4lnxd9AjusXK5bfoPZdlgA==\n-----END PUBLIC KEY-----",
+      "idPrefixes": [
+        "io.github"
+      ],
+      "roles": [
+        "revoker"
+      ]
+    }
+  ],
+  "requireRoles": [
+    "publisher",
+    "curator"
+  ]
+}

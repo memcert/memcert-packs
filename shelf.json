@@ -1,0 +1,13 @@
+{
+  "order": [
+    "io.github.joslat.packs.ampackprimer",
+    "io.github.joslat.packs.ampackspec",
+    "io.github.joslat.packs.agentmemoryfacts",
+    "io.github.joslat.packs.swisscantons",
+    "io.github.joslat.packs.alpenglowbakery",
+    "io.github.joslat.packs.lanternhilldojo",
+    "io.github.joslat.packs.martialarts",
+    "io.github.joslat.packs.coachingtechniques"
+  ],
+  "hidden": []
+}
