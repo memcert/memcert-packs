@@ -1,6 +1,6 @@
 # What is listed here, and what "certified" means
 
-Draft of 17 November 2026. It is short on purpose and will grow with experience.
+Draft of 17 November 2026, revised 21 November 2026. It is short on purpose and will grow with experience.
 
 ## What a certificate says
 
@@ -25,7 +25,9 @@ It does **not** say that the content is true, or that an agent holding the pack 
 ## Two states
 
 - **Listed:** all automatic checks pass.
-- **Certified:** a person reviewed it and the curator signed this exact pack. A host that uses this hub's trust policy loads only packs with that second signature.
+- **Certified:** the pack was reviewed, the curator accepted the review and signed this exact pack. A host that uses this hub's trust policy loads only packs with that second signature.
+
+Who reviews: for a pack from another publisher, a person, before it is certified. The sample packs we published ourselves were reviewed by an AI agent, and the curator accepted that review; the checks the table gives to "a person" were done that way for them.
 
 ## Licences
 
@@ -45,4 +47,4 @@ A pull request that is refused stays visible with its reason. A publisher can cl
 
 ## Who decides
 
-For now, one curator. Our own packs go through the same checks, and their pages say that the publisher and the curator are the same party.
+For now, one curator. Our own packs go through the same checks, and their pages say that the publisher and the curator are the same party. Their review was an AI agent's, accepted by the curator (see Two states).
